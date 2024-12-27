@@ -165,9 +165,12 @@ class PublicDashboard extends StatelessWidget {
                         return Padding(
                           padding: const EdgeInsets.only(right: 16.0),
                           child: GestureDetector(
-                            onTap: () {
-                              // Navigate to the product details page
-                            },
+                           onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => ProductDetailPage()),
+                          );
+                        },
                             child: Container(
                               width: 180,
                               decoration: BoxDecoration(
@@ -260,57 +263,62 @@ class PublicDashboard extends StatelessWidget {
             ),
 
 
-            // Slider Section
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Black Friday Collection",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                    ),
-                  ),
-                  SizedBox(height: 16),
-                  SizedBox(
-                    height: 250,
-                    child: PageView.builder(
-                      itemCount: 5,
-                      controller: PageController(viewportFraction: 0.85),
-                      itemBuilder: (context, index) {
-                        final sliderImages = [
-                          'assets/images/banner1.jpg',
-                          'assets/images/banner2.jpg',
-                          'assets/images/banner3.jpg',
-                          'assets/images/banner4.jpg',
-                          'assets/images/banner5.jpg',
-                        ];
+         // Slider Section
+// Slider Section
+Padding(
+  padding: const EdgeInsets.all(16.0),
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Text(
+        "Black Friday Collection",
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 18,
+        ),
+      ),
+      SizedBox(height: 16),
+      Align( // Aligning the slider
+        alignment: Alignment.center,
+        child: SizedBox(
+          height: 250,
+          child: PageView.builder(
+            itemCount: 5,
+            controller: PageController(viewportFraction: 1), // Adjusted viewport fraction
+            itemBuilder: (context, index) {
+              final sliderImages = [
+                'assets/images/banner1.jpg',
+                'assets/images/banner2.jpg',
+                'assets/images/banner3.jpg',
+                'assets/images/banner4.jpg',
+                'assets/images/banner5.jpg',
+              ];
 
-                        return Padding(
-                          padding: const EdgeInsets.only(right: 8.0),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(12),
-                            child: Stack(
-                              children: [
-                                Image.asset(
-                                  sliderImages[index],
-                                  fit: BoxFit.cover,
-                                  width: double.infinity,
-                                  height: double.infinity,
-                                ),
-                              ],
-                            ),
-                          ),
-                        );
-                      },
-                    ),
+              return Padding(
+                padding: const EdgeInsets.only(right: 4.0), // Minimal spacing
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: Stack(
+                    children: [
+                      Image.asset(
+                        sliderImages[index],
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                        height: double.infinity,
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            ),
-       
+                ),
+              );
+            },
+          ),
+        ),
+      ),
+    ],
+  ),
+),
+
+
             // Most Popular Section
             Padding(
               padding: const EdgeInsets.all(16.0),
